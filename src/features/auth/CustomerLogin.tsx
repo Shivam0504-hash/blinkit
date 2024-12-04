@@ -16,7 +16,7 @@ import { customerLogin } from '@service/authService'
 
 
 const bottomColors=[...lightColors].reverse()
-console.log(bottomColors)
+
 
 
 const CustomerLogin:FC = () => {
@@ -77,7 +77,7 @@ const CustomerLogin:FC = () => {
             else{
                 direction=translationY>0 ?'down':'up'
             }
-            console.log(translationX,translationY,direction)
+            // console.log(translationX,translationY,direction)
 
             const newSequence=[...gestureSequence,direction].slice(-4)
             setGestureSequence(newSequence)
@@ -107,7 +107,7 @@ const CustomerLogin:FC = () => {
                     <View style={styles.content}>
                         <Image source={require('@assets/images/logo.png')} style={styles.logo}/>
                         <CustomText variant='h2' fontFamily={Fonts.Bold}>India's last minute app</CustomText>
-                        <CustomText variant='h5' fontFamily={Fonts.SemiBold}style={styles.text}>Log In or signup</CustomText>
+                        <CustomText variant='h5' fontFamily={Fonts.SemiBold} style={styles.text}>Log In or signup</CustomText>
                         <CustomInput
                         onChangeText={(text)=>{setPhoneNumber(text.slice(0,10))}}
                         onClear={()=>{setPhoneNumber('')}}

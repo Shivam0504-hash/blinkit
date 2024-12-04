@@ -5,8 +5,11 @@ import Animated, { interpolate, useAnimatedStyle } from 'react-native-reanimated
 import Header from '@components/dashboard/Header'
 
 const AnimatedHeader:FC<{showNotice:()=>void}> = ({showNotice}) => {
+  
 
     const {scrollY}=useCollapsibleContext()
+    console.log(scrollY)
+    
     const headerAnimatedStyle=useAnimatedStyle(()=>
     {
         const opacity=interpolate(
@@ -14,6 +17,8 @@ const AnimatedHeader:FC<{showNotice:()=>void}> = ({showNotice}) => {
             [0,120],
             [1,0]
         )
+        
+        
         return {opacity}
     })
   return (

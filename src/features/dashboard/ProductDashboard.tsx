@@ -1,4 +1,4 @@
-import { View, Animated as RNAnimated, SafeAreaView, StyleSheet, TouchableOpacity, Platform} from 'react-native'
+import { View, Animated as RNAnimated, SafeAreaView, StyleSheet, TouchableOpacity, Platform, Text} from 'react-native'
 import React, { FC, useEffect, useRef } from 'react'
 import { useAuthStore } from '@state/authStore'
 import NoticeAnimation from './NoticeAnimation'
@@ -17,6 +17,7 @@ import withCart from '@features/cart/WithCart'
 import withLiveStatus from '@features/map/withLiveStatus'
 
 const NOTICE_HEIGHT=-(NoticeHeight+12)
+
 
 const ProductDashboard:FC = () => {
 
@@ -66,6 +67,7 @@ const ProductDashboard:FC = () => {
     },[])
 
   return (
+    
     <NoticeAnimation noticePosition={noticePosition}>
       <>
       <Visuals/>
@@ -116,6 +118,8 @@ const ProductDashboard:FC = () => {
     </>
     
     </NoticeAnimation>
+
+    
   )
 }
 const styles=StyleSheet.create(
@@ -146,3 +150,5 @@ const styles=StyleSheet.create(
 )
 
 export default withLiveStatus(withCart (withCollapsibleContext(ProductDashboard)))
+
+
