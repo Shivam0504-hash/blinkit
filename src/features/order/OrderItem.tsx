@@ -19,9 +19,9 @@ const OrderItem:FC<{item:any}>= ({item}) => {
             </CustomText>
 
         </View>
-        <View style={{width:'20%',alignItems:'flex-end'}}>
+        <View style={styles.addContainer}>
             <UniversalAdd item={item.item}/>
-            <CustomText variant='h8' fontFamily={Fonts.Medium} style={{alignSelf:'flex-end',marginTop:4}}>₹{item.count*item.item.price}</CustomText>
+            <CustomText variant='h8' fontFamily={Fonts.Medium} style={styles.text}>₹{item.count*item.item.price}</CustomText>
 
         </View>
      
@@ -52,5 +52,16 @@ const styles = StyleSheet.create({
         paddingVertical:12,
         borderTopWidth:0.6,
         borderTopColor:Colors.border,
+    },
+    text:{
+        alignSelf:'flex-end',
+        marginTop:4
+    },
+    addContainer:
+    {
+        width:'20%',
+        alignItems:'flex-end'
     }
+   
+
 })

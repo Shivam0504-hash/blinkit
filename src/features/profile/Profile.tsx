@@ -11,26 +11,25 @@ import ActionButton from './ActionButton'
 import OrderItem from './OrderItem'
 import { storage, tokenStorage } from '@state/Storage'
 import { resetAndNavigate } from '@utils/NavigationUtils'
+import { ScreenNames } from '@navigation/screenNames'
 
-const Profile:FC = () => {
-    const [orders,setOrders]=useState([])
-    const {logout,user}=useAuthStore()
-    const {clearCart}=useCartStore()
+const Profile: FC = () => {
+    const [orders, setOrders] = useState([])
+    const { logout, user } = useAuthStore()
+    const { clearCart } = useCartStore()
 
-    const fetchOrders=async()=>
-    {
-        const data=await fetchCustomerOrders(user?._id)
+    const fetchOrders = async () => {
+        const data = await fetchCustomerOrders(user?._id)
         setOrders(data)
     }
-    useEffect(()=>{
+    useEffect(() => {
         fetchOrders()
     },
-    
-    [])
 
-    const renderHeader=()=>
-    {
-        return(
+        [])
+
+    const renderHeader = () => {
+        return (
             <View >
                 <CustomText variant='h3' fontFamily={Fonts.SemiBold}>
                     Your Account
@@ -39,20 +38,20 @@ const Profile:FC = () => {
                 <CustomText variant='h7' fontFamily={Fonts.Medium}>
                     {user?.phone}
                 </CustomText>
-                <WalletSection/>
+                <WalletSection />
                 <CustomText variant='h8' style={styles.informativeText}>
                     YOUR INFORMATION
                 </CustomText>
 
-                <ActionButton icon='book-outline' label='Address book'/>
-                <ActionButton icon='information-circle-outline' label='About us'/>
-                <ActionButton icon='log-out-outline' label='Logout' onPress={()=>{
+                <ActionButton icon='book-outline' label='Address book' />
+                <ActionButton icon='information-circle-outline' label='About us' />
+                <ActionButton icon='log-out-outline' label='Logout' onPress={() => {
                     clearCart()
                     logout()
                     tokenStorage.clearAll()
                     storage.clearAll()
-                    resetAndNavigate('CustomerLogin')
-                }}/>
+                    resetAndNavigate(ScreenNames.CustomerLogin)
+                }} />
                 <CustomText variant='h8' style={styles.pastText}>
                     PAST ORDERS
                 </CustomText>
@@ -60,29 +59,28 @@ const Profile:FC = () => {
         )
     }
 
-    const renderOrders=({item,index}:any)=>
-    {
-        return(
-            <OrderItem item={item} index={index}/>
+    const renderOrders = ({ item, index }: any) => {
+        return (
+            <OrderItem item={item} index={index} />
         )
     }
 
 
-  return (
-    <View style={styles.container}>
-        <CustomHeader title='Profile'/>
-        <FlatList
-        data={orders}
-        ListHeaderComponent={renderHeader}
-        renderItem={renderOrders}
-        keyExtractor={(item:any)=>item?.orderId}
-        contentContainerStyle={styles.scrollViewContent}
-        
-        
-        />
-      
-    </View>
-  )
+    return (
+        <View style={styles.container}>
+            <CustomHeader title='Profile' />
+            <FlatList
+                data={orders}
+                ListHeaderComponent={renderHeader}
+                renderItem={renderOrders}
+                keyExtractor={(item: any) => item?.orderId}
+                contentContainerStyle={styles.scrollViewContent}
+
+
+            />
+
+        </View>
+    )
 }
 
 export default Profile
@@ -90,25 +88,25 @@ export default Profile
 const styles = StyleSheet.create({
     container:
     {
-        flex:1,
-        backgroundColor:'#fff',
+        flex: 1,
+        backgroundColor: '#fff',
 
     },
     scrollViewContent:
     {
-        padding:10,
-        paddingTop:20,
-        paddingBottom:100,
+        padding: 10,
+        paddingTop: 20,
+        paddingBottom: 100,
 
     },
     informativeText:
     {
-        opacity:0.7,
-        marginBottom:20,
+        opacity: 0.7,
+        marginBottom: 20,
     },
     pastText:
     {
-        marginVertical:20,
-        opacity:0.7,
+        marginVertical: 20,
+        opacity: 0.7,
     }
 })

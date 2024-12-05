@@ -6,6 +6,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 import { formatISOToCustom } from '@utils/DateUtils';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import { navigate } from '@utils/NavigationUtils';
+import { ScreenNames } from '@navigation/screenNames';
 
 interface CartItem{
     _id:string|number;
@@ -74,7 +75,7 @@ const OrderItem:FC<{item:Order;index:number}> = ({item,index}) => {
             </CustomText>
 
         </View>
-        <TouchableOpacity style={styles.iconContainer} onPress={()=>{navigate('DeliveryMap',{...item})}}>
+        <TouchableOpacity style={styles.iconContainer} onPress={()=>{navigate(ScreenNames.DeliveryMap,{...item})}}>
             <Icon name='arrow-right-circle' size={RFValue(24)} color={Colors.primary}/>
         </TouchableOpacity>
 
@@ -121,7 +122,6 @@ const styles = StyleSheet.create({
     addressContainer:
     {
         marginTop:10,
-
     },
     addressTextContainer:
     {

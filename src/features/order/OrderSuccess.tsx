@@ -6,12 +6,13 @@ import LottieView from 'lottie-react-native'
 import CustomText from '@components/ui/CustomText'
 import { useAuthStore } from '@state/authStore'
 import { replace } from '@utils/NavigationUtils'
+import { ScreenNames } from '@navigation/screenNames'
 
 const OrderSuccess: FC = () => {
   const { user } = useAuthStore()
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      replace("LiveTracking")
+      replace(ScreenNames.LiveTracking)
     }, 2300)
     return () => clearTimeout(timeoutId)
   }, [])

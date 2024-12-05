@@ -7,107 +7,99 @@ import { getAllCategories, getProductsByCategoryId } from '@service/productServi
 import ProductList from './ProductList'
 import withCart from '@features/cart/WithCart'
 
-const ProductCategories:FC = () => {
-  const [categories,setCategories]=useState<any[]>([])
-  const [selectedCategory,setSelectedCategory]=useState<any>(null)
-  const [products,setProducts]=useState<any[]>([])
-  const [categoriesLoading,setCategoriesLoading]=useState<boolean>(true)
-  const [productsLoading,setProductsLoading]=useState<boolean>(false)
+const ProductCategories: FC = () => {
+  const [categories, setCategories] = useState<any[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<any>(null)
+  const [products, setProducts] = useState<any[]>([])
+  const [categoriesLoading, setCategoriesLoading] = useState<boolean>(true)
+  const [productsLoading, setProductsLoading] = useState<boolean>(false)
 
-  const fetchCategories=async()=>
-  {
-    try{
+  const fetchCategories = async () => {
+    try {
       setCategoriesLoading(true)
-      const data=await getAllCategories()
+      const data = await getAllCategories()
       setCategories(data)
-      if(data && data.length>0)
-      {
+      if (data && data.length > 0) {
         setSelectedCategory(data[0])
       }
-    } 
-    catch(error)
-    {
-      console.log("Error Fteching Categories",error)
     }
-    finally{
+    catch (error) {
+      console.log("Error Fteching Categories", error)
+    }
+    finally {
       setCategoriesLoading(false)
     }
   }
 
-  useEffect(()=>
-  {
+  useEffect(() => {
     fetchCategories()
-  },[])
+  }, [])
 
-  const fetchProducts=async(categoryId:string)=>
-    {
-      try{
-        setCategoriesLoading(true)
-        const data=await getProductsByCategoryId(categoryId)
-        setProducts(data)
-        
-      } 
-      catch(error)
-      {
-        console.log("Error Fteching Categories",error)
-      }
-      finally{
-        setCategoriesLoading(false)
-      }
+  const fetchProducts = async (categoryId: string) => {
+    try {
+      setCategoriesLoading(true)
+      const data = await getProductsByCategoryId(categoryId)
+      setProducts(data)
+
     }
-  
-    useEffect(()=>
-    {
-      if(selectedCategory?._id)
-      {
-        fetchProducts(selectedCategory?._id)
-      }
-    },[selectedCategory])
-  
+    catch (error) {
+      console.log("Error Fteching Categories", error)
+    }
+    finally {
+      setCategoriesLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (selectedCategory?._id) {
+      fetchProducts(selectedCategory?._id)
+    }
+  }, [selectedCategory])
+
 
   return (
     <View style={styles.mainContainer}>
-      <CustomHeader title={selectedCategory?.name || "Categories"} search/>
+      <CustomHeader title={selectedCategory?.name || "Categories"} search />
       <View style={styles.subContainer}>
-        {categoriesLoading ?(<ActivityIndicator size='small' color={Colors.border}/>):
-         <Sidebar
-         categories={categories}
-         selectedCategory={selectedCategory}
-         onCategoryPress={(category:any)=>setSelectedCategory(category)}
+        {categoriesLoading ? (<ActivityIndicator size='small' color={Colors.border} />) :
+          <Sidebar
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryPress={(category: any) => setSelectedCategory(category)}
 
 
 
-         />
+          />
         }
-        {productsLoading?(<ActivityIndicator size='large' color={Colors.border} style={styles.center}/>):
-        (<ProductList data={products || [] }/>)}
+        {productsLoading ? (<ActivityIndicator size='large' color={Colors.border} style={styles.center} />) :
+          (<ProductList data={products || []} />)}
 
       </View>
     </View>
   )
 }
 
-export default withCart( ProductCategories)
+export default withCart(ProductCategories)
 
 const styles = StyleSheet.create({
 
   mainContainer:
   {
-    flex:1,
-    backgroundColor:'white',
+    flex: 1,
+    backgroundColor: 'white',
 
   },
   subContainer:
   {
-    flex:1,
-    flexDirection:'row',
-    alignItems:'center',
-   
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+
   },
   center:
   {
-    flex:1,
-    justifyContent:'center',
-    alignItems:'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })

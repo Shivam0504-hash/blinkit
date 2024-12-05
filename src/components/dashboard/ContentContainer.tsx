@@ -11,15 +11,15 @@ const ContentContainer = () => {
     <View style={styles.container}>
       {/* <AdCarousal adData={adData}/> */}
       <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
-      <CategoryContainer data={categories}/>
+      <CategoryContainer data={categories} />
       <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Bestsellers</CustomText>
-      <CategoryContainer data={categories}/>
+      <CategoryContainer data={categories} />
       <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Home & Lifestyle</CustomText>
-      <CategoryContainer data={categories}/>
+      <CategoryContainer data={categories} />
       <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Snacks & Drinks</CustomText>
-      <CategoryContainer data={categories}/> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
-      <CategoryContainer data={categories}/> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
-      <CategoryContainer data={categories}/>
+      <CategoryContainer data={categories} /> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} /> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
+      <CategoryContainer data={categories} />
     </View>
   )
 }
@@ -27,8 +27,7 @@ const ContentContainer = () => {
 export default ContentContainer
 
 const styles = StyleSheet.create({
-    container:{
-        paddingHorizontal:20,
-        // backgroundColor:'red',
-    }
+  container: {
+    paddingHorizontal: 20,
+  }
 })

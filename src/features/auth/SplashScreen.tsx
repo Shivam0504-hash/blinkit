@@ -10,109 +10,104 @@ import { useNavigation } from '@react-navigation/native'
 import { resetAndNavigate } from '@utils/NavigationUtils'
 import { refetchUser, refresh_tokens } from '@service/authService'
 import { jwtDecode } from 'jwt-decode'
+import { ScreenNames } from '@navigation/screenNames'
 
 
 
 
 GeoLocation.setRNConfiguration({
-    skipPermissionRequests:false,
-    authorizationLevel:"always",
-    enableBackgroundLocationUpdates:true,
-    locationProvider:'auto',
+    skipPermissionRequests: false,
+    authorizationLevel: "always",
+    enableBackgroundLocationUpdates: true,
+    locationProvider: 'auto',
 })
 
-interface DecodedToken{
-    exp:number; 
+interface DecodedToken {
+    exp: number;
 }
 
 
 
-const SplashScreen:FC = () => {
+const SplashScreen: FC = () => {
 
-    const{user,setUser}=useAuthStore()
+    const { user, setUser } = useAuthStore()
     // const navigation=useNavigation
 
-    const tokenCheck=async()=>{
-        const accessToken =tokenStorage.getString('accessToken') as string
-        const refreshToken =tokenStorage.getString('refreshToken') as string
+    const tokenCheck = async () => {
+        const accessToken = tokenStorage.getString('accessToken') as string
+        const refreshToken = tokenStorage.getString('refreshToken') as string
 
-        if(accessToken)
-        {
-            const decodedAccessToken=jwtDecode<DecodedToken>(accessToken)
-            const decodedRefreshToken=jwtDecode<DecodedToken>(refreshToken)
+        if (accessToken) {
+            const decodedAccessToken = jwtDecode<DecodedToken>(accessToken)
+            const decodedRefreshToken = jwtDecode<DecodedToken>(refreshToken)
 
-            const currentTime=Date.now()/1000;
-            if(decodedRefreshToken?.exp<currentTime)
-            {
-                resetAndNavigate('CustomerLogin')
-                Alert.alert("Session Expired","Please Login Again")
+            const currentTime = Date.now() / 1000;
+            if (decodedRefreshToken?.exp < currentTime) {
+                resetAndNavigate(ScreenNames.CustomerLogin)
+                Alert.alert("Session Expired", "Please Login Again")
                 return false
             }
-            if(decodedAccessToken?.exp<currentTime)
-            {
-                try{
+            if (decodedAccessToken?.exp < currentTime) {
+                try {
                     refresh_tokens()
                     await refetchUser(setUser)
                 }
-                catch(error)
-                {
+                catch (error) {
                     console.log(error)
                     Alert.alert("There was an error refreshing tokem!")
                     return false
                 }
-                
+
             }
-            if(user?.role==='Customer')
-            {
-                resetAndNavigate("ProductDashboard")
+            if (user?.role === 'Customer') {
+                resetAndNavigate(ScreenNames.ProductDashboard)
             }
-            else{
-                resetAndNavigate("DeliveryDashboard")
+            else {
+                resetAndNavigate(ScreenNames.DeliveryDashboard)
             }
             return true
         }
-        resetAndNavigate('CustomerLogin')
+        resetAndNavigate(ScreenNames.CustomerLogin)
         return false
 
     }
 
-    useEffect(()=>{
-        const fetchUserLoaction=async()=>{
-            try{
+    useEffect(() => {
+        const fetchUserLoaction = async () => {
+            try {
                 GeoLocation.requestAuthorization()
                 tokenCheck()
             }
-            catch(error)
-            {
+            catch (error) {
                 Alert.alert("Sorry We need location services to give you better shopping experience")
             }
         }
-        const timeoutId=setTimeout(fetchUserLoaction,2000)
-        return ()=>clearTimeout(timeoutId)
-    },[])
-  return (
-    <View style={styles.container}>
-        <Image source={Logo} style={styles.logoImage} />
+        const timeoutId = setTimeout(fetchUserLoaction, 2000)
+        return () => clearTimeout(timeoutId)
+    }, [])
+    return (
+        <View style={styles.container}>
+            <Image source={Logo} style={styles.logoImage} />
 
-    </View>
-    
-  )
+        </View>
+
+    )
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
     container:
     {
-        backgroundColor:Colors.primary,
-        flex:1,
-        justifyContent:"center",
-        alignItems:"center",
+        backgroundColor: Colors.primary,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
 
     },
     logoImage:
     {
-        height:screenHeight*0.7,
-        width:screenWidth*0.7,
-        resizeMode:'contain',
+        height: screenHeight * 0.7,
+        width: screenWidth * 0.7,
+        resizeMode: 'contain',
     }
 })
 

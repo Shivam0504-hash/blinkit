@@ -46,42 +46,39 @@ const DeliveryMap: FC = () => {
         return () => Geolocation.clearWatch(watchId)
     }, [])
 
-    const acceptOrder=async()=>
-    {
-        const data=await confirmOrder(orderData?._id,myLocation)
-        if(data){
+    const acceptOrder = async () => {
+        const data = await confirmOrder(orderData?._id, myLocation)
+        if (data) {
             setCurrentOrder(data)
             Alert.alert("Order Aceepted,Grab your Package")
         }
-        else{
+        else {
             Alert.alert("There was an error")
         }
         fetchOrderDetails()
     }
-    const orderPickedUp=async()=>
-        {
-            const data=await sendLiveOrderUpdates(orderData?._id,myLocation,'arriving')
-            if(data){
-                setCurrentOrder(data)
-                Alert.alert("On the way of delivering")
-            }
-            else{
-                Alert.alert("There was an error")
-            }
-            fetchOrderDetails()
+    const orderPickedUp = async () => {
+        const data = await sendLiveOrderUpdates(orderData?._id, myLocation, 'arriving')
+        if (data) {
+            setCurrentOrder(data)
+            Alert.alert("On the way of delivering")
         }
-        const orderDelivered=async()=>
-            {
-                const data=await sendLiveOrderUpdates(orderData?._id,myLocation,'delivered')
-                if(data){
-                    setCurrentOrder(data)
-                    Alert.alert("Wow you do it!")
-                }
-                else{
-                    Alert.alert("There was an error")
-                }
-                fetchOrderDetails()
-            }
+        else {
+            Alert.alert("There was an error")
+        }
+        fetchOrderDetails()
+    }
+    const orderDelivered = async () => {
+        const data = await sendLiveOrderUpdates(orderData?._id, myLocation, 'delivered')
+        if (data) {
+            setCurrentOrder(data)
+            Alert.alert("Wow you do it!")
+        }
+        else {
+            Alert.alert("There was an error")
+        }
+        fetchOrderDetails()
+    }
 
     let message = 'Start this order'
     if (orderData?.deliveryPartner?._id == user?._id && orderData?.status === 'confirmed') {
@@ -97,15 +94,14 @@ const DeliveryMap: FC = () => {
         message = 'You missed it!'
     }
 
-    useEffect(()=>{
-        async function sendLiveUpdates(){
-            if(orderData?.deliveryPartner?._id==user?._id && orderData?.status!='delivered' && orderData?.status!='cancelled')
-            {
-                await sendLiveOrderUpdates(orderData._id,myLocation,orderData?._status)
+    useEffect(() => {
+        async function sendLiveUpdates() {
+            if (orderData?.deliveryPartner?._id == user?._id && orderData?.status != 'delivered' && orderData?.status != 'cancelled') {
+                await sendLiveOrderUpdates(orderData._id, myLocation, orderData?._status)
                 fetchOrderDetails()
             }
         }
-    },[myLocation])
+    }, [myLocation])
 
 
     return (
@@ -113,42 +109,42 @@ const DeliveryMap: FC = () => {
             <LiveHeader type='Delivery' title={message} secondTitle='Delivery in 10 min' />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContent}>
 
-                <LiveMap />
-                <DeliveryDetails details={orderData?.customer}/>
-                <OrderSummary order={orderData}/>   
+                {/* <LiveMap /> */}
+                <DeliveryDetails details={orderData?.customer} />
+                <OrderSummary order={orderData} />
             </ScrollView>
-            {orderData?.status!='deliverd' && orderData?.status!='cancelled' && 
-            <View style={[hocStyles.cartContainer,styles.btnContainer]}>
-                {orderData?.status=='available' &&
-                <CustomButton
-                disabled={false}
-                title='Accept Order'
-                onPress={acceptOrder}
-                loading={false}
-                />
-                
-                }
-                 {orderData?.status=='confirmed' && orderData?.deliveryPartner?._id===user?._id &&
-                <CustomButton
-                disabled={false}
-                title='Order Picked Up'
-                onPress={orderPickedUp}
-                loading={false}
-                />
-                
-                }
-                 {orderData?.status=='arriving' && orderData?.deliveryPartner?._id===user?._id &&
-                <CustomButton
-                disabled={false}
-                title='Delivered'
-                onPress={orderDelivered}
-                loading={false}
-                />
-                
-                }
-            </View>
-            
-            
+            {orderData?.status != 'deliverd' && orderData?.status != 'cancelled' &&
+                <View style={[hocStyles.cartContainer, styles.btnContainer]}>
+                    {orderData?.status == 'available' &&
+                        <CustomButton
+                            disabled={false}
+                            title='Accept Order'
+                            onPress={acceptOrder}
+                            loading={false}
+                        />
+
+                    }
+                    {orderData?.status == 'confirmed' && orderData?.deliveryPartner?._id === user?._id &&
+                        <CustomButton
+                            disabled={false}
+                            title='Order Picked Up'
+                            onPress={orderPickedUp}
+                            loading={false}
+                        />
+
+                    }
+                    {orderData?.status == 'arriving' && orderData?.deliveryPartner?._id === user?._id &&
+                        <CustomButton
+                            disabled={false}
+                            title='Delivered'
+                            onPress={orderDelivered}
+                            loading={false}
+                        />
+
+                    }
+                </View>
+
+
             }
 
         </View>
@@ -195,7 +191,7 @@ const styles = StyleSheet.create({
     },
     btnContainer:
     {
-        padding:10,
+        padding: 10,
 
     }
 

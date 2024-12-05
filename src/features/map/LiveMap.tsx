@@ -5,7 +5,7 @@ import { Colors } from '@utils/Constants'
 
 const LiveMap = () => {
   return (
-    <View style={styles.container}> 
+    <View style={styles.container}>
       <Text>LiveMap</Text>
     </View>
   )
@@ -14,17 +14,16 @@ const LiveMap = () => {
 export default LiveMap
 
 const styles = StyleSheet.create({
-    container:
-    {
-        height:screenHeight*.35,
-        width:'100%',
-        borderRadius:15,
-        backgroundColor:'#fff',
-        overflow:'hidden',
-        borderWidth:1,
-        borderColor:Colors.border,
-        position:'relative'
-
-    },
+  container:
+  {
+    height: screenHeight * .35,
+    width: '100%',
+    borderRadius: 15,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: Colors.border,
+    position: 'relative'
+  },
 
 })

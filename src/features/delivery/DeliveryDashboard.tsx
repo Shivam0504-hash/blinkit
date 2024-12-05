@@ -9,68 +9,67 @@ import CustomText from '@components/ui/CustomText'
 import OrderItem from '@components/delivery/OrderItem'
 
 const DeliveryDashboard = () => {
-  const [selectedTab,setSelectedTab]=useState<'available'| 'delivered'>('available')
-  const[loading,setLoading]=useState(true)
-  const[data,setData]=useState<any[]>([])
-  const[refreshing,setRefreshing]=useState(false)
+  const [selectedTab, setSelectedTab] = useState<'available' | 'delivered'>('available')
+  const [loading, setLoading] = useState(true)
+  const [data, setData] = useState<any[]>([])
+  const [refreshing, setRefreshing] = useState(false)
 
-  const renderOrderItem=({item,index}:any)=>{
+  const renderOrderItem = ({ item, index }: any) => {
     return (
-      <OrderItem  index={index} item={item}/>
+      <OrderItem index={index} item={item} />
     )
   }
 
-  const fetchData=async()=>{
+  const fetchData = async () => {
     setData([])
     setRefreshing(true)
     setLoading(true)
-    const data=await fetchOrders(selectedTab,user?._id,user?.branch)
+    const data = await fetchOrders(selectedTab, user?._id, user?.branch)
     setData(data);
     setRefreshing(false)
     setLoading(false)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     fetchData()
-  },[selectedTab])
+  }, [selectedTab])
 
-  const{user}=useAuthStore()
+  const { user } = useAuthStore()
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <DeliveryHeader name={user?.name} email={user?.email}/>
+        <DeliveryHeader name={user?.name} email={user?.email} />
       </SafeAreaView>
       <View style={styles.subContainer}>
-        <TabBar selectedTab={selectedTab} onTabChange={setSelectedTab}/>
+        <TabBar selectedTab={selectedTab} onTabChange={setSelectedTab} />
         <FlatList
-        data={data}
-        refreshControl={
-          <RefreshControl
-          refreshing={refreshing}
-          onRefresh={async()=>await fetchData()}
-          />
-        }
-        ListEmptyComponent={()=>{
-          if(loading)
-          {
-            return(
-              <View style={styles.center}>
-                <ActivityIndicator color={Colors.secondary} size='small'/>
-                </View>
-            )
+          data={data}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={async () => await fetchData()}
+            />
           }
-          return (
-            <View style={styles.center}>
-              <CustomText>
-                No Orders found yet!
-              </CustomText>
+          ListEmptyComponent={() => {
+            if (loading) {
+              return (
+                <View style={styles.center}>
+                  <ActivityIndicator color={Colors.secondary} size='small' />
+                </View>
+              )
+            }
+            return (
+              <View style={styles.center}>
+                <CustomText>
+                  No Orders found yet!
+                </CustomText>
               </View>
-          )
-        }}
-        renderItem={renderOrderItem}
-        keyExtractor={(item)=>item.orderId}
-        contentContainerStyle={styles.flalisrContainer}
-        
+            )
+          }}
+          renderItem={renderOrderItem}
+          keyExtractor={(item) => item.orderId}
+          contentContainerStyle={styles.flalisrContainer}
+
         />
       </View>
     </View>
@@ -79,27 +78,27 @@ const DeliveryDashboard = () => {
 
 export default DeliveryDashboard
 
-const styles=StyleSheet.create({
-  container:{
-    backgroundColor:Colors.primary,
-    flex:1,
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: Colors.primary,
+    flex: 1,
   },
   subContainer:
   {
-    backgroundColor:Colors.backgroundSecondary,
-    flex:1,
-    padding:6,
+    backgroundColor: Colors.backgroundSecondary,
+    flex: 1,
+    padding: 6,
   },
   flalisrContainer:
   {
-    padding:2,
+    padding: 2,
 
   },
   center:
   {
-    flex:1,
-    marginTop:60,
-    justifyContent:'center',
-    alignItems:'center',
+    flex: 1,
+    marginTop: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })

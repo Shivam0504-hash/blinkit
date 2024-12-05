@@ -7,6 +7,7 @@ import { navigate } from '@utils/NavigationUtils';
 import { useAuthStore } from '@state/authStore';
 import CustomText from '@components/ui/CustomText';
 import { Fonts } from '@utils/Constants';
+import { ScreenNames } from '@navigation/screenNames';
 
 const LiveHeader: FC<{ type: 'customer' | 'Delivery'; title: string; secondTitle: string }> = ({ type, title, secondTitle }) => {
     const isCustomer = type === 'customer'
@@ -17,13 +18,13 @@ const LiveHeader: FC<{ type: 'customer' | 'Delivery'; title: string; secondTitle
             <View style={styles.headerContainer}>
                 <Pressable style={styles.backButton} onPress={() => {
                     if (isCustomer) {
-                        navigate("ProductDashboard")
+                        navigate(ScreenNames.ProductDashboard)
                         if (currentOrder?.status == 'delivered') {
                             setCurrentOrder(null)
                         }
                         return
                     }
-                    navigate("DeliveryDashboard")
+                    navigate(ScreenNames.DeliveryDashboard)
                 }}>
                     <Icon name='chevron-back' size={RFValue(16)} color={isCustomer ? "#fff" : '#000'} />
                 </Pressable>

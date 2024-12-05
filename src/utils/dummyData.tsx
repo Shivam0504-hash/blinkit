@@ -166,8 +166,8 @@ export const orders = [
     {
         orderId: 'ORDER21312',
         items: [
-            { id: 'a', item: {name:'Milk'}, count: 2 },
-            { id: 'b', item: {name:'Tea'}, count: 1 },
+            { id: 'a', item: { name: 'Milk' }, count: 2 },
+            { id: 'b', item: { name: 'Tea' }, count: 1 },
         ],
         totalPrice: 25.00,
         createdAt: '2024-08-10T10:00:00Z',

@@ -6,17 +6,17 @@ import { Fonts } from '@utils/Constants'
 import { Defs, G, Path, Svg, Use } from 'react-native-svg'
 import { wavyData } from '@utils/dummyData'
 
-const Notice:FC = () => {
+const Notice: FC = () => {
   return (
-    <View style={{height:NoticeHeight}}>
+    <View style={{ height: NoticeHeight }}>
       <View style={styles.container}>
         <View style={styles.noticeContainer}>
-          <SafeAreaView style={{padding:10}}>
+          <SafeAreaView style={{ padding: 10 }}>
             <CustomText style={styles.heading} variant='h8' fontFamily={Fonts.SemiBold}>
-             It’s too cold outside
+              It’s too cold outside
             </CustomText>
             <CustomText style={styles.textCenter} variant='h9'>
-            Our delivery partners may take longer to reach you. Don’t worry!
+              Our delivery partners may take longer to reach you. Don’t worry!
             </CustomText>
 
           </SafeAreaView>
@@ -25,21 +25,21 @@ const Notice:FC = () => {
 
       </View>
       <Svg
-      width='100%'
-      height='35'
-      fill='#CCD5E4'
-      viewBox='0 0 4000 1000'
-      preserveAspectRatio='none'
-      style={styles.wave}
+        width='100%'
+        height='35'
+        fill='#CCD5E4'
+        viewBox='0 0 4000 1000'
+        preserveAspectRatio='none'
+        style={styles.wave}
       >
         <Defs>
-          <Path id='wavepath'  d={wavyData}/>
+          <Path id='wavepath' d={wavyData} />
         </Defs>
         <G>
-          <Use href='#wavepath' y="321"/>
+          <Use href='#wavepath' y="321" />
         </G>
       </Svg>
-      
+
     </View>
   )
 }
@@ -49,27 +49,27 @@ export default Notice
 const styles = StyleSheet.create({
   container:
   {
-    backgroundColor:'#CCD5E4'
+    backgroundColor: '#CCD5E4'
   },
   noticeContainer:
   {
-    justifyContent:'center',
-    alignItems:'center',
-    backgroundColor:'#CCD5E4',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#CCD5E4',
   },
   textCenter:
   {
-    textAlign:'center',
-    marginBottom:8,
+    textAlign: 'center',
+    marginBottom: 8,
   },
-  heading:{
-    color:'#2D3875',
-    marginBottom:8,
-    textAlign:'center',
+  heading: {
+    color: '#2D3875',
+    marginBottom: 8,
+    textAlign: 'center',
   },
   wave:
   {
-    width:'100%',
-    transform:[{rotateX:'180deg'}]
+    width: '100%',
+    transform: [{ rotateX: '180deg' }]
   }
 })

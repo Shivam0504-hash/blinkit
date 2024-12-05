@@ -12,24 +12,23 @@ import CustomInput from '@components/ui/CustomInput'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import CustomButton from '@components/ui/CustomButton'
+import { ScreenNames } from '@navigation/screenNames'
 
-const DeliveryLogin:FC = () => {
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
-  const[loading,setLoading]=useState(false)
+const DeliveryLogin: FC = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
-  const handleLogin=async()=>
-  {
-    setLoading(true) 
-    try{
-      await deliveryLogin(email,password)
-      resetAndNavigate("DeliveryDashboard")
+  const handleLogin = async () => {
+    setLoading(true)
+    try {
+      await deliveryLogin(email, password)
+      resetAndNavigate(ScreenNames.DeliveryDashboard)
     }
-    catch(error)
-    {
-       Alert.alert("Login Failed")
+    catch (error) {
+      Alert.alert("Login Failed")
     }
-    finally{
+    finally {
       setLoading(false)
 
     }
@@ -40,38 +39,38 @@ const DeliveryLogin:FC = () => {
       <ScrollView keyboardShouldPersistTaps='handled' keyboardDismissMode='on-drag'>
         <View style={styles.container}>
           <View style={styles.lottieContainer}>
-            <LottieView autoPlay loop style={styles.lottie} source={require('@assets/animations/delivery_man.json')}/>
+            <LottieView autoPlay loop style={styles.lottie} source={require('@assets/animations/delivery_man.json')} />
 
           </View>
           <CustomText variant="h3" fontFamily={Fonts.Bold}>
             Delivery Partner Portal
           </CustomText>
           <CustomText variant="h6" style={styles.text} fontFamily={Fonts.SemiBold}>
-           Faster than Flash⚡️
+            Faster than Flash⚡️
           </CustomText>
 
           <CustomInput
-          onChangeText={setEmail}
-          value={email}
-          left={<Icon name='mail' color='#F8890E' style={{marginLeft:10}} size={RFValue(18)}/>}
-          placeholder='Email'
-          inputMode='email'
-          right={false}
+            onChangeText={setEmail}
+            value={email}
+            left={<Icon name='mail' color='#F8890E' style={{ marginLeft: 10 }} size={RFValue(18)} />}
+            placeholder='Email'
+            inputMode='email'
+            right={false}
           />
 
-<CustomInput
-          onChangeText={setPassword}
-          value={password}
-          left={<Icon name='key-sharp' color='#F8890E' style={{marginLeft:10}} size={RFValue(18)}/>}
-          placeholder='Password'
-          secureTextEntry
-          right={false}
+          <CustomInput
+            onChangeText={setPassword}
+            value={password}
+            left={<Icon name='key-sharp' color='#F8890E' style={{ marginLeft: 10 }} size={RFValue(18)} />}
+            placeholder='Password'
+            secureTextEntry
+            right={false}
           />
           <CustomButton
-          disabled={email.length==0 || password.length<8}
-          title='Login'
-          onPress={handleLogin}
-          loading={loading}
+            disabled={email.length == 0 || password.length < 8}
+            title='Login'
+            onPress={handleLogin}
+            loading={loading}
 
           />
 
@@ -83,27 +82,27 @@ const DeliveryLogin:FC = () => {
   )
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
   container:
   {
-    flex:1,
-    padding:20,
-    alignItems:'center'
+    flex: 1,
+    padding: 20,
+    alignItems: 'center'
   },
   lottie:
   {
-    height:'100%',
-    width:'100%',
+    height: '100%',
+    width: '100%',
   },
   lottieContainer:
   {
-    height:screenHeight*0.12,
-    width:"100%",
+    height: screenHeight * 0.12,
+    width: "100%",
   },
-  text:{
-    marginTop:2,
-    marginBottom:25,
-    opacity:0.8,
+  text: {
+    marginTop: 2,
+    marginBottom: 25,
+    opacity: 0.8,
 
   }
 

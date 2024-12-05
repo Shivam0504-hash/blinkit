@@ -5,91 +5,89 @@ import CustomText from '@components/ui/CustomText';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Colors } from '@utils/Constants';
 
-interface SidebarProps{
-    selectedCategory:any;
-    categories:any;
-    onCategoryPress:(category:any)=>void
+interface SidebarProps {
+    selectedCategory: any;
+    categories: any;
+    onCategoryPress: (category: any) => void
 }
 
-const Sidebar:FC<SidebarProps> = ({selectedCategory,categories,onCategoryPress}) => {
-   
+const Sidebar: FC<SidebarProps> = ({ selectedCategory, categories, onCategoryPress }) => {
 
 
-    const scrollViewRef=useRef<ScrollView>(null)
-    const indicatorPosition=useSharedValue(0)
-    const animatedValues=categories?.map(()=>useSharedValue(0))
 
-    useEffect(()=>{
+    const scrollViewRef = useRef<ScrollView>(null)
+    const indicatorPosition = useSharedValue(0)
+    const animatedValues = categories?.map(() => useSharedValue(0))
 
-        let targetIndex=-1;
+    useEffect(() => {
 
-        categories?.forEach((category:any,index:number)=>{
-            const isSelected=selectedCategory?._id===category._id
-            animatedValues[index].value=withTiming(isSelected?2:-15,{duration:500})
-            if(isSelected) targetIndex=index
+        let targetIndex = -1;
+
+        categories?.forEach((category: any, index: number) => {
+            const isSelected = selectedCategory?._id === category._id
+            animatedValues[index].value = withTiming(isSelected ? 2 : -15, { duration: 500 })
+            if (isSelected) targetIndex = index
         });
 
-        if(targetIndex!==-1)
-        {
-            indicatorPosition.value=withTiming(targetIndex*100,{duration:500})
-            runOnJS(()=>
-            {
+        if (targetIndex !== -1) {
+            indicatorPosition.value = withTiming(targetIndex * 100, { duration: 500 })
+            runOnJS(() => {
                 scrollViewRef.current?.scrollTo({
-                    y:targetIndex*100,
-                    animated:true
+                    y: targetIndex * 100,
+                    animated: true
                 })
             })
         }
 
 
-    },[selectedCategory])
+    }, [selectedCategory])
 
-    const indicatorStyle=useAnimatedStyle(()=>({
-        transform:[{translateY:indicatorPosition.value}]
+    const indicatorStyle = useAnimatedStyle(() => ({
+        transform: [{ translateY: indicatorPosition.value }]
     }))
-   
-  return (
-    <View style={styles.sideBar}>
 
-      <ScrollView ref={scrollViewRef} contentContainerStyle={{paddingBottom:50}} showsVerticalScrollIndicator={false}>
-      
-      <Animated.View style={[styles.indicator,indicatorStyle]}/>
+    return (
+        <View style={styles.sideBar}>
 
-        <Animated.View>
-            {categories?.map((category:any,index:number)=>{
-                const animatedStyle=useAnimatedStyle(()=>({
-                    bottom:animatedValues[index].value
-                }))
-                return(
-                    <TouchableOpacity 
-                    key={index}
-                    activeOpacity={1}
-                    style={styles.categoryButton}
-                    onPress={()=>onCategoryPress(category)}>
-                        <View style={[styles.imageContainer,
-                        selectedCategory?.id===category?._id && styles.selectedImageContainer
+            <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingBottom: 50 }} showsVerticalScrollIndicator={false}>
 
-                        ]}>
-                            <Animated.Image 
-                            source={{uri:category.image}}
-                            style={[styles.image,animatedStyle]}
-                            
-                            />
+                <Animated.View style={[styles.indicator, indicatorStyle]} />
 
-                        </View>
-                        <CustomText fontSize={RFValue(7)} style={{textAlign:'center'}}>
-                            {category?.name}
-                        </CustomText>
+                <Animated.View>
+                    {categories?.map((category: any, index: number) => {
+                        const animatedStyle = useAnimatedStyle(() => ({
+                            bottom: animatedValues[index].value
+                        }))
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                activeOpacity={1}
+                                style={styles.categoryButton}
+                                onPress={() => onCategoryPress(category)}>
+                                <View style={[styles.imageContainer,
+                                selectedCategory?.id === category?._id && styles.selectedImageContainer
 
-                    </TouchableOpacity>
-                )
+                                ]}>
+                                    <Animated.Image
+                                        source={{ uri: category.image }}
+                                        style={[styles.image, animatedStyle]}
 
-            })}
-        </Animated.View> 
+                                    />
 
-      </ScrollView>
-    </View>
-  )
+                                </View>
+                                <CustomText fontSize={RFValue(7)} style={{ textAlign: 'center' }}>
+                                    {category?.name}
+                                </CustomText>
+
+                            </TouchableOpacity>
+                        )
+
+                    })}
+                </Animated.View>
+
+            </ScrollView>
+        </View>
+    )
 }
 
 export default Sidebar
@@ -97,57 +95,53 @@ export default Sidebar
 const styles = StyleSheet.create({
     sideBar:
     {
-        width:"24%",
-        backgroundColor:'#fff',
-        borderRightWidth:0.8,
-        borderRightColor:'#eee',
-        position:'relative',
-       
-
-
+        width: "24%",
+        backgroundColor: '#fff',
+        borderRightWidth: 0.8,
+        borderRightColor: '#eee',
+        position: 'relative',
     },
     categoryButton:
     {
-        padding:10,
-        height:100,
-        paddingVertical:0,
-        justifyContent:'center',
-        alignItems:'center',
-        width:'100%',
-
+        padding: 10,
+        height: 100,
+        paddingVertical: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
     },
     image:
     {
-        width:'80%',
-        height:'80%',
-        resizeMode:'contain',
+        width: '80%',
+        height: '80%',
+        resizeMode: 'contain',
     },
     imageContainer:
     {
-        borderRadius:100,
-        height:'50%',
-        marginBottom:10,
-        width:'75%',
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#F3F4F7',
-        overflow:'hidden',
+        borderRadius: 100,
+        height: '50%',
+        marginBottom: 10,
+        width: '75%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F3F4F7',
+        overflow: 'hidden',
     },
     selectedImageContainer:
     {
-        backgroundColor:'#CFFFDB',
+        backgroundColor: '#CFFFDB',
 
     },
     indicator:
     {
-        position:'absolute',
-        right:0,
-        width:4,
-        height:80,
-        top:10,
-        alignSelf:'center',
-        backgroundColor:Colors.secondary,
-        borderTopLeftRadius:15,
-        borderBottomLeftRadius:15,
+        position: 'absolute',
+        right: 0,
+        width: 4,
+        height: 80,
+        top: 10,
+        alignSelf: 'center',
+        backgroundColor: Colors.secondary,
+        borderTopLeftRadius: 15,
+        borderBottomLeftRadius: 15,
     }
 })

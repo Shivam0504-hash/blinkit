@@ -14,6 +14,7 @@ import { useAuthStore } from '@state/authStore'
 import ArrowButton from '@components/ui/ArrowButton'
 import { navigate } from '@utils/NavigationUtils'
 import { createOrder } from '@service/orderService'
+import { ScreenNames } from '@navigation/screenNames'
 
 const ProductOrder: FC = () => {
     const { getTotalPrice, cart, clearCart } = useCartStore()
@@ -45,7 +46,7 @@ const ProductOrder: FC = () => {
         if (data != null) {
             setCurrentOrder(data)
             clearCart()
-            navigate('OrderSuccess', { ...data })
+            navigate(ScreenNames.OrderSuccess, { ...data })
 
         }
         else {

@@ -28,15 +28,15 @@ const LiveTracking: FC = () => {
     let time = 'Arriving in 10 minutes'
     if (currentOrder?.status == 'confirmed') {
         msg = 'Arriving Soon',
-        time = 'Arriving in 8 minutes'
+            time = 'Arriving in 8 minutes'
     }
     else if (currentOrder?.status == 'arriving') {
         msg = 'Order Picked Up',
-        time = 'Arriving in 6 minutes'
+            time = 'Arriving in 6 minutes'
     }
     else if (currentOrder?.status == 'delivered') {
         msg = 'Order Delivered',
-        time = 'Fastest Delivery ⚡️'
+            time = 'Fastest Delivery ⚡️'
     }
 
 
@@ -45,7 +45,7 @@ const LiveTracking: FC = () => {
             <LiveHeader type='customer' title={msg} secondTitle={time} />
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollContent}>
 
-                <LiveMap />
+                {/* <LiveMap /> */}
                 <View style={styles.flexRow}>
                     <View style={styles.iconcontainer}>
                         <Icon name={currentOrder?.deliveryPartner ? "phone" : "shopping"} color={Colors.disabled} size={RFValue(20)} />
