@@ -21,7 +21,7 @@ const Header:FC<{showNotice:()=>void}> = ({showNotice}) => {
             </CustomText>
             <TouchableOpacity style={styles.noticeBtn} onPress={showNotice}>
                 <CustomText fontSize={RFValue(5) } fontFamily={Fonts.SemiBold} style={{color:'#3B4886'}} >
-                    ⛈️Rain
+                    ☃️Snow
                 </CustomText>
             </TouchableOpacity>
         

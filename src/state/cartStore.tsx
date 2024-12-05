@@ -24,7 +24,7 @@ export const useCartStore=create<CartStore>()
     persist(
         (set,get)=>({
             cart:[],
-            addItem:(item)=>{
+            addItem:(item)=>{   
                 const currentCart=get().cart
                 const existingItemIndex=currentCart.findIndex(cartItem=>cartItem?._id===item._id)
                 if(existingItemIndex>=0)

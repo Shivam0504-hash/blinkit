@@ -28,15 +28,15 @@ const LiveTracking: FC = () => {
     let time = 'Arriving in 10 minutes'
     if (currentOrder?.status == 'confirmed') {
         msg = 'Arriving Soon',
-            time = 'Arriving in 8 minutes'
+        time = 'Arriving in 8 minutes'
     }
     else if (currentOrder?.status == 'arriving') {
         msg = 'Order Picked Up',
-            time = 'Arriving in 6 minutes'
+        time = 'Arriving in 6 minutes'
     }
     else if (currentOrder?.status == 'delivered') {
         msg = 'Order Delivered',
-            time = 'Fastest Delivery ⚡️'
+        time = 'Fastest Delivery ⚡️'
     }
 
 
@@ -58,8 +58,8 @@ const LiveTracking: FC = () => {
 
                 </View>
 
-                <DeliveryDetails details={currentOrder?.customer}/>
-                <OrderSummary order={currentOrder}/>
+                <DeliveryDetails details={currentOrder?.customer} />
+                <OrderSummary order={currentOrder} />
 
 
 

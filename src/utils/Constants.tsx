@@ -33,3 +33,10 @@ export const darkWeatherColors = [
     'rgba(54, 67, 92, 0.0)',
 
 ];
+export const snowyWeatherColors = [
+    'rgba(60, 120, 180, 1)',   
+    'rgba(140, 180, 210, 0.9)',
+    'rgba(204, 213, 228, 0.8)', 
+    'rgba(224, 235, 245, 0.6)', 
+    'rgba(255, 255, 255, 0.2)', 
+];

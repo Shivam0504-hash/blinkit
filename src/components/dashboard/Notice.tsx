@@ -13,10 +13,10 @@ const Notice:FC = () => {
         <View style={styles.noticeContainer}>
           <SafeAreaView style={{padding:10}}>
             <CustomText style={styles.heading} variant='h8' fontFamily={Fonts.SemiBold}>
-              It's raining near this loaction
+             It’s too cold outside
             </CustomText>
             <CustomText style={styles.textCenter} variant='h9'>
-              Our delivery partners may take longer to reach you
+            Our delivery partners may take longer to reach you. Don’t worry!
             </CustomText>
 
           </SafeAreaView>

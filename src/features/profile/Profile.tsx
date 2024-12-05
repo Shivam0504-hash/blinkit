@@ -31,7 +31,7 @@ const Profile:FC = () => {
     const renderHeader=()=>
     {
         return(
-            <View>
+            <View >
                 <CustomText variant='h3' fontFamily={Fonts.SemiBold}>
                     Your Account
 
