@@ -12,6 +12,7 @@ import OrderItem from './OrderItem'
 import { storage, tokenStorage } from '@state/Storage'
 import { resetAndNavigate } from '@utils/NavigationUtils'
 import { ScreenNames } from '@navigation/screenNames'
+import strings from '@utils/string'
 
 const Profile: FC = () => {
     const [orders, setOrders] = useState([])
@@ -32,7 +33,7 @@ const Profile: FC = () => {
         return (
             <View >
                 <CustomText variant='h3' fontFamily={Fonts.SemiBold}>
-                    Your Account
+                    {strings.youraccount}
 
                 </CustomText>
                 <CustomText variant='h7' fontFamily={Fonts.Medium}>
@@ -40,7 +41,7 @@ const Profile: FC = () => {
                 </CustomText>
                 <WalletSection />
                 <CustomText variant='h8' style={styles.informativeText}>
-                    YOUR INFORMATION
+                    {strings.information}
                 </CustomText>
 
                 <ActionButton icon='book-outline' label='Address book' />
@@ -53,7 +54,7 @@ const Profile: FC = () => {
                     resetAndNavigate(ScreenNames.CustomerLogin)
                 }} />
                 <CustomText variant='h8' style={styles.pastText}>
-                    PAST ORDERS
+                    {strings.pastorder}
                 </CustomText>
             </View>
         )

@@ -15,7 +15,7 @@ const OrderItem:FC<{item:any}>= ({item}) => {
                 {item.item.name}
             </CustomText>
             <CustomText variant='h9'>
-                {item.item.quantity}
+                {item.item.quantity}  
             </CustomText>
 
         </View>

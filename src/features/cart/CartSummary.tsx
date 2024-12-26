@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { navigate } from '@utils/NavigationUtils';
 import { ScreenNames } from '@navigation/screenNames';
+import strings from '@utils/string';
 
 interface CartSummaryProps {
   cartCount: number;
@@ -19,7 +20,7 @@ const CartSummary: FC<CartSummaryProps> = ({ cartCount, cartImage }) => {
     <View style={styles.conatiner}>
       <View style={styles.flexRowGap}>
         <Image source={cartImage === null ? require('@assets/icons/bucket.png') : { uri: cartImage }} style={styles.image} />
-        <CustomText fontFamily={Fonts.SemiBold}>{cartCount} ITEM{cartCount > 1 ? 'S' : ''}</CustomText>
+        <CustomText fontFamily={Fonts.SemiBold}>{cartCount} {strings.item}{cartCount > 1 ? 'S' : ''}</CustomText>
         <Icon name='arrow-drop-up' color={Colors.secondary} size={RFValue(25)} />
 
       </View>
@@ -27,7 +28,7 @@ const CartSummary: FC<CartSummaryProps> = ({ cartCount, cartImage }) => {
         activeOpacity={0.7}
         onPress={() => navigate(ScreenNames.ProductOrder)}
       >
-        <CustomText style={styles.btntext} fontFamily={Fonts.Medium}>Next</CustomText>
+        <CustomText style={styles.btntext} fontFamily={Fonts.Medium}>{strings.next}</CustomText>
         <Icon name='arrow-right' color='#fff' size={RFValue(25)} />
 
       </TouchableOpacity>

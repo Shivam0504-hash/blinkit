@@ -7,6 +7,7 @@ import { useAuthStore } from '@state/authStore'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { navigate } from '@utils/NavigationUtils'
 import { ScreenNames } from '@navigation/screenNames'
+import strings from '@utils/string'
 
 const Header: FC<{ showNotice: () => void }> = ({ showNotice }) => {
     const { setUser, user } = useAuthStore()
@@ -14,15 +15,15 @@ const Header: FC<{ showNotice: () => void }> = ({ showNotice }) => {
         <View style={styles.subcontainer}>
             <TouchableOpacity activeOpacity={0.8}>
                 <CustomText fontFamily={Fonts.Bold} variant='h8' style={styles.text}>
-                    Delivery in
+                    {strings.delivery}
                 </CustomText>
                 <View style={styles.flexRowGap}>
                     <CustomText fontFamily={Fonts.SemiBold} variant='h2' style={styles.text}>
-                        10 minuts
+                        {strings.time}
                     </CustomText>
                     <TouchableOpacity style={styles.noticeBtn} onPress={showNotice}>
                         <CustomText fontSize={RFValue(5)} fontFamily={Fonts.SemiBold} style={{ color: '#3B4886' }} >
-                            ☃️Snow
+                            ☃️{strings.snow}
                         </CustomText>
                     </TouchableOpacity>
 

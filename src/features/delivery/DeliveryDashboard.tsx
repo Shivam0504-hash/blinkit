@@ -7,6 +7,7 @@ import TabBar from '@components/delivery/TabBar'
 import { fetchOrders } from '@service/orderService'
 import CustomText from '@components/ui/CustomText'
 import OrderItem from '@components/delivery/OrderItem'
+import strings from '@utils/string'
 
 const DeliveryDashboard = () => {
   const [selectedTab, setSelectedTab] = useState<'available' | 'delivered'>('available')
@@ -61,7 +62,7 @@ const DeliveryDashboard = () => {
             return (
               <View style={styles.center}>
                 <CustomText>
-                  No Orders found yet!
+                  {strings.noorder}
                 </CustomText>
               </View>
             )

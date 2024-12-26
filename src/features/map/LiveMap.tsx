@@ -2,11 +2,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { screenHeight } from '@utils/Scaling'
 import { Colors } from '@utils/Constants'
+import strings from '@utils/string'
 
 const LiveMap = () => {
   return (
     <View style={styles.container}>
-      <Text>LiveMap</Text>
+      <Text>{strings.livemap}</Text>
     </View>
   )
 }

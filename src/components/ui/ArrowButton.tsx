@@ -4,6 +4,7 @@ import { Colors, Fonts } from '@utils/Constants';
 import CustomText from './CustomText';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import strings from '@utils/string';
 
 interface ArrowButtonProps {
     title: string;
@@ -18,8 +19,8 @@ const ArrowButton: FC<ArrowButtonProps> = ({ title, onPress, price, loading }) =
         <TouchableOpacity activeOpacity={0.8} disabled={loading} onPress={onPress} style={[styles.btn, { justifyContent: price != 0 ? 'space-between' : 'center' }]}>
             {price != 0 && price &&
                 <View>
-                    <CustomText variant='h7' style={{ color: 'white' }} fontFamily={Fonts.Medium}>₹{price + 34}.0</CustomText>
-                    <CustomText variant='h9' style={{ color: 'white' }} fontFamily={Fonts.Medium}>TOTAL</CustomText>
+                    <CustomText variant='h7' style={{ color: 'white' }} fontFamily={Fonts.Medium}>{strings.rupay}{price + 34}{strings.rupay}</CustomText>
+                    <CustomText variant='h9' style={{ color: 'white' }} fontFamily={Fonts.Medium}>{strings.total}</CustomText>
                 </View>
             }
             <View style={styles.flexRow}>

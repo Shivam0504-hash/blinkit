@@ -5,6 +5,7 @@ import CustomText from '@components/ui/CustomText'
 import { Fonts } from '@utils/Constants'
 import { Defs, G, Path, Svg, Use } from 'react-native-svg'
 import { wavyData } from '@utils/dummyData'
+import strings from '@utils/string'
 
 const Notice: FC = () => {
   return (
@@ -13,10 +14,10 @@ const Notice: FC = () => {
         <View style={styles.noticeContainer}>
           <SafeAreaView style={{ padding: 10 }}>
             <CustomText style={styles.heading} variant='h8' fontFamily={Fonts.SemiBold}>
-              It’s too cold outside
+              {strings.noticeheading}
             </CustomText>
             <CustomText style={styles.textCenter} variant='h9'>
-              Our delivery partners may take longer to reach you. Don’t worry!
+              {strings.noticetext}
             </CustomText>
 
           </SafeAreaView>

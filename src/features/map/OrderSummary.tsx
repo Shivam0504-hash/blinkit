@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import CustomText from '@components/ui/CustomText'
 import BillDetails from '@features/order/BillDetails'
+import strings from '@utils/string'
 
 const OrderSummary: FC<{ order: any }> = ({ order }) => {
   const totalPrice = order?.items
@@ -46,10 +47,10 @@ const OrderSummary: FC<{ order: any }> = ({ order }) => {
             </View>
             <View style={{ width: '20%', alignItems: 'flex-end' }}>
               <CustomText variant='h8' fontFamily={Fonts.Medium} style={{ alignSelf: 'flex-end', marginTop: 4 }}>
-                ₹{item.count * item.item.price}
+                {strings.rupay}{item.count * item.item.price}
               </CustomText>
               <CustomText variant='h8' fontFamily={Fonts.Medium} style={{ alignSelf: 'flex-end', marginTop: 4 }}>
-                ₹{item.count}X
+                {strings.rupay}{item.count}{strings.x}
               </CustomText>
 
             </View>

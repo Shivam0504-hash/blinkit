@@ -14,6 +14,7 @@ import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated'
 import Icon from 'react-native-vector-icons/Ionicons'
 import withCart from '@features/cart/WithCart'
 import withLiveStatus from '@features/map/withLiveStatus'
+import strings from '@utils/string'
 
 const NOTICE_HEIGHT = -(NoticeHeight + 12)
 
@@ -76,7 +77,7 @@ const ProductDashboard: FC = () => {
           }} style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
             <Icon name='arrow-up-circle-outline' color='white' size={RFValue(12)} />
             <CustomText variant='h9' style={{ color: 'white' }} fontFamily={Fonts.SemiBold}>
-              Back to Top
+              {strings.backtotop}
             </CustomText>
           </TouchableOpacity>
 

@@ -4,6 +4,7 @@ import { useCartStore } from '@state/cartStore'
 import CustomText from '@components/ui/CustomText'
 import { Colors, Fonts } from '@utils/Constants'
 import OrderItem from './OrderItem'
+import strings from '@utils/string'
 
 const OrderList = () => {
   const cartItems = useCartStore((state) => state.cart)
@@ -17,8 +18,8 @@ const OrderList = () => {
           <Image source={require("@assets/icons/clock.png")} style={styles.img} />
         </View>
         <View>
-          <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Delivey in 9 minutes</CustomText>
-          <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={{ opacity: 0.5 }}>Shipment of {totalItems || 0} item</CustomText>
+          <CustomText variant='h5' fontFamily={Fonts.SemiBold}>{strings.deliveryin}</CustomText>
+          <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={{ opacity: 0.5 }}>{strings.shipment} {totalItems || 0} {strings.items}</CustomText>
 
         </View>
 

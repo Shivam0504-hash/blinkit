@@ -5,17 +5,18 @@ import { Colors, Fonts } from '@utils/Constants'
 import { RFValue } from 'react-native-responsive-fontsize'
 import RollingBar from 'react-native-rolling-bar'
 import CustomText from '@components/ui/CustomText'
+import strings from '@utils/string'
 
 const SearchBar: FC = () => {
     return (
         <TouchableOpacity style={styles.container} activeOpacity={0.8}>
             <Icon name='search' color={Colors.text} size={RFValue(20)} />
             <RollingBar interval={3000} defaultStyle={false} customStyle={styles.textContainer}>
-                <CustomText variant='h6' fontFamily={Fonts.Medium}>Search "sweets"</CustomText>
-                <CustomText variant='h6' fontFamily={Fonts.Medium}>Search "milk"</CustomText>
-                <CustomText variant='h6' fontFamily={Fonts.Medium}>Search "ata,dal,coke"</CustomText>
-                <CustomText variant='h6' fontFamily={Fonts.Medium}>Search "chips"</CustomText>
-                <CustomText variant='h6' fontFamily={Fonts.Medium}>Search "pooza thali"</CustomText>
+                <CustomText variant='h6' fontFamily={Fonts.Medium}>{strings.sweets}</CustomText>
+                <CustomText variant='h6' fontFamily={Fonts.Medium}>{strings.milk}</CustomText>
+                <CustomText variant='h6' fontFamily={Fonts.Medium}>{strings.aata}</CustomText>
+                <CustomText variant='h6' fontFamily={Fonts.Medium}>{strings.chips}</CustomText>
+                <CustomText variant='h6' fontFamily={Fonts.Medium}>{strings.pooja}</CustomText>
             </RollingBar>
             <View style={styles.divider} />
             <Icon name='mic' color={Colors.text} size={RFValue(20)} />

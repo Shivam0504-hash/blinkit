@@ -4,6 +4,7 @@ import CustomText from '@components/ui/CustomText'
 import { Colors, Fonts } from '@utils/Constants'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import strings from '@utils/string'
 
 
 const ReportItem: FC<{ iconName: string; underline?: boolean; title: string; price: number }> = ({ iconName, underline, title, price }) => {
@@ -18,7 +19,7 @@ const ReportItem: FC<{ iconName: string; underline?: boolean; title: string; pri
 
             </View>
             <CustomText variant='h8'>
-                ₹{price}
+                {strings.rupay}{price}
             </CustomText>
 
         </View>

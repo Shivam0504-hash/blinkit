@@ -11,14 +11,11 @@ import CustomButton from '@components/ui/CustomButton'
 import useKeyboardOffsetHeight from '@utils/useKeyboardOffsetHeight'
 import { RFValue } from 'react-native-responsive-fontsize'
 import LinearGradient from 'react-native-linear-gradient'
-
 import { customerLogin } from '@service/authService'
 import { ScreenNames } from '@navigation/screenNames'
-
+import strings from '@utils/string'
 
 const bottomColors = [...lightColors].reverse()
-
-
 
 const CustomerLogin: FC = () => {
 
@@ -26,7 +23,6 @@ const CustomerLogin: FC = () => {
     const [loading, setLoading] = useState(false)
     const [gestureSequence, setGestureSequence] = useState<string[]>([])
     const keyboardOffsetHeight = useKeyboardOffsetHeight()
-
     const animatedValue = useRef(new Animated.Value(0)).current
 
     useEffect(() => {
@@ -101,14 +97,14 @@ const CustomerLogin: FC = () => {
                             <LinearGradient colors={bottomColors} style={styles.gradient} />
                             <View style={styles.content}>
                                 <Image source={require('@assets/images/logo.png')} style={styles.logo} />
-                                <CustomText variant='h2' fontFamily={Fonts.Bold}>India's last minute app</CustomText>
-                                <CustomText variant='h5' fontFamily={Fonts.SemiBold} style={styles.text}>Log In or signup</CustomText>
+                                <CustomText variant='h2' fontFamily={Fonts.Bold}>{strings.last}</CustomText>
+                                <CustomText variant='h5' fontFamily={Fonts.SemiBold} style={styles.text}>{strings.login}</CustomText>
                                 <CustomInput
                                     onChangeText={(text) => { setPhoneNumber(text.slice(0, 10)) }}
                                     onClear={() => { setPhoneNumber('') }}
                                     value={phonenumber}
                                     left={<CustomText style={styles.phonetext} variant='h6' fontFamily={Fonts.SemiBold}>
-                                        +91
+                                        {strings.mobile}
                                     </CustomText>}
                                     placeholder=' Enter mobile number'
                                     inputMode='numeric'
@@ -130,7 +126,7 @@ const CustomerLogin: FC = () => {
                 <View style={styles.footer}>
                     <SafeAreaView>
                         <CustomText fontSize={RFValue(6)}>
-                            By Continung, you agree to our Terms of Service & Privacy Policy</CustomText>
+                            {strings.bottomlogin}</CustomText>
                     </SafeAreaView>
 
                 </View>

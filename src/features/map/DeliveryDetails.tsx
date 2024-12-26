@@ -4,6 +4,7 @@ import { Colors, Fonts } from '@utils/Constants'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { RFValue } from 'react-native-responsive-fontsize'
 import CustomText from '@components/ui/CustomText'
+import strings from '@utils/string'
 
 const DeliveryDetails: FC<{ details: any }> = ({ details }) => {
     return (
@@ -15,10 +16,10 @@ const DeliveryDetails: FC<{ details: any }> = ({ details }) => {
                 </View>
                 <View>
                     <CustomText variant='h5' fontFamily={Fonts.SemiBold}>
-                        Your delivery details
+                        {strings.deliverydetails}
                     </CustomText>
                     <CustomText variant='h8' fontFamily={Fonts.Medium}>
-                        Details of your current order
+                        {strings.currentorderdetails}
                     </CustomText>
                 </View>
 
@@ -31,7 +32,7 @@ const DeliveryDetails: FC<{ details: any }> = ({ details }) => {
                 </View>
                 <View style={{ width: '80%' }}>
                     <CustomText variant='h8' fontFamily={Fonts.Medium}>
-                        Delivery at Home
+                        {strings.deliveryhome}
                     </CustomText>
                     <CustomText numberofLines={2} variant='h8' fontFamily={Fonts.Regular}>
                         {details?.address || '-------'}
@@ -50,7 +51,7 @@ const DeliveryDetails: FC<{ details: any }> = ({ details }) => {
                         {details?.name} {details?.phone || 'XXXXXXXXXX'}
                     </CustomText>
                     <CustomText numberofLines={2} variant='h8' fontFamily={Fonts.Regular}>
-                        Receiver's contact no.
+                        {strings.recievercontactnumber}
                     </CustomText>
                 </View>
 

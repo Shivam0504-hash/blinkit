@@ -15,6 +15,7 @@ import ArrowButton from '@components/ui/ArrowButton'
 import { navigate } from '@utils/NavigationUtils'
 import { createOrder } from '@service/orderService'
 import { ScreenNames } from '@navigation/screenNames'
+import strings from '@utils/string'
 
 const ProductOrder: FC = () => {
     const { getTotalPrice, cart, clearCart } = useCartStore()
@@ -63,7 +64,7 @@ const ProductOrder: FC = () => {
                 <View style={styles.flexRowBetween}>
                     <View style={styles.flexRow}>
                         <Image source={require('@assets/icons/coupon.png')} style={{ width: 25, height: 25 }} />
-                        <CustomText variant='h6' fontFamily={Fonts.SemiBold}>Use Coupons</CustomText>
+                        <CustomText variant='h6' fontFamily={Fonts.SemiBold}>{strings.coupons}</CustomText>
 
                     </View>
                     <Icon name='chevron-right' size={RFValue(16)} color={Colors.text} />
@@ -73,10 +74,10 @@ const ProductOrder: FC = () => {
                 <View style={styles.flexRowBetween}>
                     <View>
                         <CustomText variant='h8' fontFamily={Fonts.SemiBold}>
-                            Cancellation Policy
+                            {strings.cancelpolocy}
                         </CustomText>
                         <CustomText variant='h9' style={styles.canceltext} fontFamily={Fonts.SemiBold}>
-                            Orders cannot be cancelled once packed for delivery,In case of unexpected delays,a refund will be provided, if applicable
+                            {strings.canceltext}
                         </CustomText>
                     </View>
 

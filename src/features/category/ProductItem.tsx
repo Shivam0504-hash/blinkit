@@ -5,6 +5,7 @@ import CustomText from '@components/ui/CustomText';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Colors, Fonts } from '@utils/Constants';
 import UniversalAdd from '@components/ui/UniversalAdd';
+import strings from '@utils/string';
 
 const ProductItem: FC<{ item: any; index: number }> = ({ index, item }) => {
     const isSecondColumn = index % 2 != 0
@@ -16,7 +17,7 @@ const ProductItem: FC<{ item: any; index: number }> = ({ index, item }) => {
             <View style={styles.content}>
                 <View style={styles.flexRow}>
                     <Image source={require('@assets/icons/clock.png')} style={styles.clockIcon} />
-                    <CustomText fontSize={RFValue(6)} fontFamily={Fonts.Medium}>8 MINS</CustomText>
+                    <CustomText fontSize={RFValue(6)} fontFamily={Fonts.Medium}>{strings.deliverytime}</CustomText>
 
                 </View>
                 <CustomText fontFamily={Fonts.Medium} variant='h8' numberofLines={2} style={{ marginVertical: 4 }}>
@@ -25,10 +26,10 @@ const ProductItem: FC<{ item: any; index: number }> = ({ index, item }) => {
                 <View style={styles.priceContainer}>
                     <View>
                         <CustomText variant='h8' fontFamily={Fonts.Medium}>
-                            ₹{item?.price}
+                            {strings.rupay}{item?.price}
                         </CustomText>
                         <CustomText variant='h8' fontFamily={Fonts.Medium} style={{ opacity: 0.8, textDecorationLine: 'line-through' }}>
-                            ₹{item?.discountPrice}
+                        {strings.rupay}{item?.discountPrice}
                         </CustomText>
                     </View>
                     <UniversalAdd item={item} />

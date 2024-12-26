@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { resetAndNavigate } from '@utils/NavigationUtils';
 import { storage, tokenStorage } from '@state/Storage';
 import { ScreenNames } from '@navigation/screenNames';
+import strings from '@utils/string';
 
 interface DeliveyHeaderProps {
     name: string;
@@ -23,7 +24,7 @@ const DeliveryHeader: FC<DeliveyHeaderProps> = ({ name, email }) => {
             </View>
             <View style={styles.infoContainer}>
                 <CustomText variant='h4' fontFamily={Fonts.SemiBold}>
-                    Hello {name}!
+                    {strings.hello} {name}!
                 </CustomText>
                 <CustomText variant='h8' fontFamily={Fonts.Medium}>
                     {email}

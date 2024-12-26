@@ -7,6 +7,7 @@ import { formatISOToCustom } from '@utils/DateUtils';
 import  Icon  from 'react-native-vector-icons/MaterialCommunityIcons';
 import { navigate } from '@utils/NavigationUtils';
 import { ScreenNames } from '@navigation/screenNames';
+import strings from '@utils/string';
 
 interface CartItem{
     _id:string|number;
@@ -45,7 +46,7 @@ const OrderItem:FC<{item:Order;index:number}> = ({item,index}) => {
     <View style={styles.container}>
       <View style={styles.flexRowBetween}>
         <CustomText variant='h8' fontFamily={Fonts.Medium}>
-            #{item.orderId}
+            {strings.hash}{item.orderId}
         </CustomText>
         <View style={[styles.statusContainer]}>
             <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={[styles.statusText,{color:getStatusColor(item.status)}]}>
@@ -59,7 +60,7 @@ const OrderItem:FC<{item:Order;index:number}> = ({item,index}) => {
         {item.items.slice(0,2).map((i,idx)=>{
             return(
                 <CustomText variant='h8' numberofLines={1} key={idx}>
-                {i.count}X {i.item.name}
+                {i.count}{strings.x} {i.item.name}
                 </CustomText>
             )
         })}

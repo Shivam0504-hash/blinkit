@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { FC } from 'react'
 import { Colors, Fonts } from '@utils/Constants';
 import CustomText from '@components/ui/CustomText';
+import strings from '@utils/string';
 
 interface TabBarProps {
   selectedTab: 'available' | 'delivered';
@@ -15,14 +16,14 @@ const TabBar: FC<TabBarProps> = ({ selectedTab, onTabChange }) => {
       selectedTab == 'available' && styles.activeTab]}
         onPress={() => onTabChange('available')}>
         <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={[styles.tabText, selectedTab === 'available' ? styles.activeTab : styles.inactiveTabText]}>
-          Available
+          {strings.available}
         </CustomText>
       </TouchableOpacity>
       <TouchableOpacity activeOpacity={0.8} style={[styles.tab,
       selectedTab !== 'available' && styles.activeTab]}
         onPress={() => onTabChange('delivered')}>
         <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={[styles.tabText, selectedTab !== 'available' ? styles.activeTab : styles.inactiveTabText]}>
-          Delivered
+          {strings.delivered}
         </CustomText>
       </TouchableOpacity>
     </View>

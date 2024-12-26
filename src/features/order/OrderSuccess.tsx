@@ -7,6 +7,7 @@ import CustomText from '@components/ui/CustomText'
 import { useAuthStore } from '@state/authStore'
 import { replace } from '@utils/NavigationUtils'
 import { ScreenNames } from '@navigation/screenNames'
+import strings from '@utils/string'
 
 const OrderSuccess: FC = () => {
   const { user } = useAuthStore()
@@ -30,11 +31,11 @@ const OrderSuccess: FC = () => {
 
       />
       <CustomText variant='h8' fontFamily={Fonts.SemiBold} style={styles.orderPlaceText}>
-        Order Placed
+        {strings.palcedorder}
       </CustomText>
       <View style={styles.deliveryContainer}>
         <CustomText variant='h4' fontFamily={Fonts.SemiBold}>
-          Delivering to Home
+          {strings.deliverytohome}
         </CustomText>
       </View>
       <CustomText variant='h8' style={styles.addressText} fontFamily={Fonts.Medium}>

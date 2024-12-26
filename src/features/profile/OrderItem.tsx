@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import CustomText from '@components/ui/CustomText';
 import { Fonts } from '@utils/Constants';
 import { formatISOToCustom } from '@utils/DateUtils';
+import strings from '@utils/string';
 
 interface CartItem {
     _id: string | number;
@@ -36,7 +37,7 @@ const OrderItem: FC<{ item: Order; index: number }> = ({ item, index }) => {
                     {item?.items?.map((i, idx) => {
                         return (
                             <CustomText variant='h8' numberofLines={1} key={idx}>
-                                {i.count}X
+                                {i.count}{strings.x}
                                 {i.item.name}
                             </CustomText>
                         )
@@ -44,7 +45,7 @@ const OrderItem: FC<{ item: Order; index: number }> = ({ item, index }) => {
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
                     <CustomText variant='h5' fontFamily={Fonts.SemiBold} style={{ marginTop: 10 }}>
-                        ₹{item.totalPrice}
+                        {strings.rupay}{item.totalPrice}
                     </CustomText>
                     <CustomText variant='h9'>
                         {formatISOToCustom(item.createdAt)}

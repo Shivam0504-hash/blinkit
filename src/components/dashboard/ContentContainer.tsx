@@ -5,20 +5,19 @@ import { adData, categories } from '@utils/dummyData'
 import CustomText from '@components/ui/CustomText'
 import { Fonts } from '@utils/Constants'
 import CategoryContainer from './CategoryContainer'
+import strings from '@utils/string'
 
 const ContentContainer = () => {
   return (
     <View style={styles.container}>
       {/* <AdCarousal adData={adData}/> */}
-      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
+      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>{strings.grocery}</CustomText>
       <CategoryContainer data={categories} />
-      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Bestsellers</CustomText>
+      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>{strings.best}</CustomText>
       <CategoryContainer data={categories} />
-      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Home & Lifestyle</CustomText>
+      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>{strings.homestyle}</CustomText>
       <CategoryContainer data={categories} />
-      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Snacks & Drinks</CustomText>
-      <CategoryContainer data={categories} /> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
-      <CategoryContainer data={categories} /> <CustomText variant='h5' fontFamily={Fonts.SemiBold}>Grocery & Kitchen</CustomText>
+      <CustomText variant='h5' fontFamily={Fonts.SemiBold}>{strings.snacks}</CustomText>
       <CategoryContainer data={categories} />
     </View>
   )

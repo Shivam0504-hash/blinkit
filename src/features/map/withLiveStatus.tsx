@@ -7,6 +7,7 @@ import { useAuthStore } from "@state/authStore"
 import { hocStyles } from "@styles/GlobalStyle"
 import { Colors, Fonts } from "@utils/Constants"
 import { navigate } from "@utils/NavigationUtils"
+import strings from "@utils/string"
 import React, { FC, useEffect } from "react"
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native"
 import io from "socket.io-client"
@@ -61,7 +62,7 @@ const withLiveStatus = <P extends object>(WrappedComponent: React.ComponentType<
                             </View>
                             <View style={{ width: '68%' }}>
                                 <CustomText variant="h7" fontFamily={Fonts.SemiBold}>
-                                    Order is {currentOrder?.status}
+                                    {strings.order} {currentOrder?.status}
                                 </CustomText>
                                 <CustomText variant="h9" fontFamily={Fonts.Medium}>
                                     {currentOrder?.items![0]?.item.name + (currentOrder?.items?.length - 1 > 0 ? `and ${(currentOrder?.items?.length - 1)}+items` : '')}
@@ -72,7 +73,7 @@ const withLiveStatus = <P extends object>(WrappedComponent: React.ComponentType<
                         </View>
                         <TouchableOpacity onPress={() => navigate(ScreenNames.LiveTracking)} style={styles.btn}>
                             <CustomText variant="h8" style={{ color: Colors.secondary }} fontFamily={Fonts.Medium}>
-                                View
+                                {strings.view}
                             </CustomText>
                         </TouchableOpacity>
 

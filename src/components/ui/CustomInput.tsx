@@ -1,7 +1,6 @@
 import { Colors, Fonts } from "@utils/Constants";
 import { FC } from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
-
 import { RFValue } from "react-native-responsive-fontsize";
 import Icon from "react-native-vector-icons/Ionicons"
 

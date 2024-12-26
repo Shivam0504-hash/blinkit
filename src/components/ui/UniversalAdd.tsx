@@ -5,6 +5,7 @@ import { Colors, Fonts } from '@utils/Constants'
 import CustomText from './CustomText'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { RFValue } from 'react-native-responsive-fontsize'
+import strings from '@utils/string'
 
 const UniversalAdd: FC<{ item: any }> = ({ item }) => {
     const count = useCartStore((state) => state.getItemCount(item._id))
@@ -14,7 +15,7 @@ const UniversalAdd: FC<{ item: any }> = ({ item }) => {
             {count === 0 ?
                 <Pressable onPress={() => addItem(item)} style={styles.add}>
                     <CustomText variant='h9' fontFamily={Fonts.SemiBold} style={styles.addText}>
-                        ADD
+                        {strings.add}
                     </CustomText>
                 </Pressable> :
                 <View style={styles.counterConatiner}>
